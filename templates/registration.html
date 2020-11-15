@@ -1,0 +1,58 @@
+<title>Cine Plix | Sign Up</title>
+
+
+{% extends 'base.html' %}
+{% block body_block %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<div class="container">
+  <br><br>
+  <div class="login-form demo_wrap">
+  </div>
+  <div class="form-login ">
+
+
+    <h1>Sign Up</h1>
+    <br>
+    <form method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-outline-primary" value="Sign Up">
+    </form>
+  </div>
+
+</div>
+
+<style>
+  .login-form {
+    background-color: #ebebeb;
+    position: relative;
+    margin: auto;
+    padding: 50px;
+    width: 60%;
+    height: 700px;
+    opacity: 0.7;
+  }
+
+  .form-login {
+    position: relative;
+    color: rgb(0, 0, 0);
+    z-index: 2;
+    width: 520px;
+    bottom: 650px;
+    left: 290px;
+  }
+
+  body {
+    background-image: url("{% static 'images\hobbit.jpg' %}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+
+
+
+{% endblock  %}

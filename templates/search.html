@@ -1,0 +1,67 @@
+<title>Cine Plix | Search</title>
+{% extends 'base.html' %}
+{% block body_block %}
+
+  <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+
+<main role="main">
+
+  <section class="jumbotron text-center" style="background-color: #5c969e;">
+    <div class="container" style="background-color:#5c969e;">
+      <h1 class="jumbotron-heading">Search Movies and Tv Series</h1><br>
+      <form method="POST">
+
+      <div class="input-group mb-3">
+              {% csrf_token %}
+        <input type="text" name="search" class="form-control" aria-label="Username">
+      </div>
+      <p>
+        <button type="submit" href="#" class="btn btn-primary my-2" style="width: 250px;">Search</button>
+      </p>
+    </form>
+
+    </div>
+  </section>
+
+  <div class="album py-5">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+
+            {% for data in search_data %}
+            <div class="card movie_card">
+                <img src="https://image.tmdb.org/t/p/w500/{{ data.searc_jpg }}" class="card-img-top" alt="Sorry cant find">
+                <div class="card-body">
+                    <a href="#" class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer" style="text-decoration: none;">
+                    </a>
+    
+                    <h6 class="card-title">{{ data.title }}</h6>
+                    <span class="movie_info">{{ data.date }}</span>
+                    <span class="movie_info float-right"><i class="fas fa-star"></i> {{ data.rating }} /
+                        10</span>
+                </div>
+            </div>
+            {% endfor %}
+    
+        </div>
+  </div>
+
+</main>
+
+{% endblock %}

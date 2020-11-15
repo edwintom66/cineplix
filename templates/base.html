@@ -1,0 +1,203 @@
+<!doctype html>
+{% load static %}
+{% csrf_token %}
+<html lang="en">
+
+<head>
+    <title>Cine Plix | Home</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/search.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #555555 !important;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning static-top sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.png' %}" alt="" class="logo"
+                    style="height: 40px; width: 100px;transition: 0.5s all ease-in-out;">
+                <style>
+                    .logo:hover {
+                        transform: scale(1.2);
+                    }
+
+                    .nav a {
+                        color: white !important;
+                        font-size: 100px !important;
+                    }
+
+                    .nav li {
+                        padding-right: 5px;
+                        font-size: 100px !important;
+                    }
+                </style>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse headertext" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'first_app:mainhome' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="about">About Us</a>
+                    </li>
+
+                    <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ request.user.username }}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Sign Out</a>
+                        </div>
+                    </li>
+                    <li>
+                        <form class="form-inline d-flex justify-content-center md-form form-sm" method="POST" action="{% url 'search_app:search_api' %}">
+                        {% csrf_token %}
+                            <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search movies and Tv shows"
+                                aria-label="Search" style="width: 200px;">
+                            <button class="fas fa-search" aria-hidden="true" ></button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'first_app:mainhome' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'first_app:about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'accounts:login' %}">Sign In</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
+                    </li>
+
+                    <li>
+                        <form class="form-inline d-flex justify-content-center md-form form-sm" method="POST" action="{% url 'search_app:search_api' %}">
+                        {% csrf_token %}
+                            <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search movies and Tv shows"
+                                aria-label="Search" style="width: 200px;">
+                            <button class="fas fa-search" aria-hidden="true" ></button>
+                        </form>
+                    </li>
+
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body_block %}
+
+    {% endblock  %}
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4 bg-warning">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Movie.Series.Anime</h5>
+                    <p>Thanks for visiting our page hope you guys enjoyed</p>
+
+
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">About</a>
+                        </li>
+                        <li>
+                            <a class="disable-links" href="#!" style="pointer-events: none;">Contact us</a>
+                        </li>
+                        <li>
+                            <a class="disable-links" href="#!" style="pointer-events: none;">Careers</a>
+                        </li>
+                        <li>
+                            <a class="disable-links" href="#!" style="pointer-events: none;">Feedback</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5>Powered by</h5>
+                    <!-- image of tdatabase -->
+                    <a href="https://www.themoviedb.org/">
+                        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+                            alt="The movie database" style="height: 120px;width: 120px;"></a>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright: EDWIN TOM RAYMOND
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+    <!-- Page Content -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

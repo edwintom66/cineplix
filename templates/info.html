@@ -1,0 +1,152 @@
+<title>Cine Plix | About Us</title>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container about-me">
+  <div class="edwin-img"><img src="{% static 'images\edwin.png' %}" alt=""></div>
+  <div class="about-me-text">
+    <h1>About <strike>Us</strike> Me</h1>
+    <hr style="width: 400px;height:5px;border-width:0;color:white;background-color:white">
+    <br>
+    <div class="text-align">
+      <h5>Hello guys! My name is Edwin Tom. I love coding and creating beautiful responsive websites.</h5>
+      <h5>I made this website completetly using Django webframework. My career objective is Seeing a career as a <br>
+        Full stack Python developer in a progressive web development company and to effectively utilize the
+        <br>knowledge gained in my academic curriculum and self learned skills for attaining a responsible,
+        <br>challenging
+        and rewarding position.</h5>
+      <hr style="width: 940px;height:1px;border-width:0;color:white;background-color:white">
+      <br>
+      <ul class="social-links">
+        <li><a href="https://www.instagram.com/edwintom66"><img src="{% static 'images\insta.png' %}"
+              class="social"></a></li>
+        <li><a href="https://twitter.com/edwintom66"><img src="{% static 'images\twitter.png' %}" class="social"></a>
+        </li>
+        <li><a href="https://github.com/edwintom66"><img src="{% static 'images\git1.png' %}" class="social"></a></li>
+        <li><a href="https://www.hackerrank.com/edwintom66"><img src="{% static 'images\hack.png' %}"
+              class="social"></a></li>
+        <li><a href="https://www.linkedin.com/in/edwin-tom-03b1b370/"><img src="{% static 'images\link.png' %}"
+              class="social"></a></li>
+
+
+      </ul>
+
+    </div>
+  </div>
+  <div class="my-life"><img src="{% static 'images\my-life-1.jpg' %}" style="width: 1614px;height: 210px;" alt=""></div>
+</div>
+
+<div class="container" style="color: white;">
+  <h2>Send Me a Message</h2>
+  <form action="" method="POST">
+      {% csrf_token %}
+
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+          {{ field.errors }}
+          <label>{{ field.label_tag }}</label>
+          <p>{{ field }}</p>
+      </div>
+      {% endfor %}
+      <button type="reset" class="btn btn-secondary">Reset</button>
+       <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<br><br><br><br><br><br>
+<style>
+  .about-me {
+    height: 800px !important;
+  }
+
+  .about-me-text {
+    color: white;
+    text-align: center;
+    position: relative;
+    left: 180px;
+    bottom: 350px;
+  }
+
+  .edwin-img {
+    position: relative;
+    top: 70px;
+    right: 30px;
+  }
+
+  .social-links {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .social-links ul,
+  li {
+    display: inline-block;
+    list-style-type: none;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+
+  .social {
+    width: 35px;
+    height: 35px;
+    transition: transform .2s;
+  }
+
+  .me-icons {
+    width: 35px;
+    height: 35px;
+
+  }
+
+
+  .social:hover {
+    transform: scale(1.5);
+  }
+
+  .social-share {
+    width: 20px;
+    height: 20px;
+  }
+
+  .web-icons {
+    width: 18px;
+    height: 18px;
+
+  }
+
+  .my-life {
+    position: relative;
+    z-index: 5;
+    width: 820;
+    right: 300px;
+    max-width: 600px;
+    bottom: 275px;
+    opacity: 0.6;
+  }
+
+  /* contact us */
+
+
+  /* .contact-us{
+  position: relative;
+  bottom: 400px;
+  height: 700px;
+} */
+  #id_name {
+    width: 100%
+  }
+
+  #id_message {
+    width: 100%
+  }
+
+  #id_email {
+    width: 100%
+  }
+</style>
+{% endblock %}
